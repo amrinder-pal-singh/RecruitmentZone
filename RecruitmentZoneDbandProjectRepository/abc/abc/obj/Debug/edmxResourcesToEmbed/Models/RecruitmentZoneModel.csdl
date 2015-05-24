@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RecruitmentZoneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AdminLogin">
+    <Key>
+      <PropertyRef Name="Admin_Id" />
+    </Key>
+    <Property Name="Admin_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Admin_AdminTypeId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Admin_UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Admin_Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Admin_Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AdminType" Relationship="Self.FK_AdminLogin_AdminType" FromRole="AdminLogin" ToRole="AdminType" />
+  </EntityType>
+  <EntityType Name="AdminType">
+    <Key>
+      <PropertyRef Name="AdminType_Id" />
+    </Key>
+    <Property Name="AdminType_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminType_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AdminLogins" Relationship="Self.FK_AdminLogin_AdminType" FromRole="AdminType" ToRole="AdminLogin" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="City_Id" />
+    </Key>
+    <Property Name="City_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City_StateId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="City_Name" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="City_Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="State" Relationship="Self.FK_City_State" FromRole="City" ToRole="State" />
+    <NavigationProperty Name="ContactInformations" Relationship="Self.FK_ContactInformation_City" FromRole="City" ToRole="ContactInformation" />
+  </EntityType>
+  <EntityType Name="ContactInformation">
+    <Key>
+      <PropertyRef Name="ContactInformation_Id" />
+    </Key>
+    <Property Name="ContactInformation_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactInformation_RegistrationId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ContactInformation_StateId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ContactInformation_CityId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ContactInformation_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ContactInformation_MobileNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ContactInformation_AlternateMobileNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="ContactInformation_EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK_ContactInformation_City" FromRole="ContactInformation" ToRole="City" />
+    <NavigationProperty Name="State" Relationship="Self.FK_ContactInformation_State" FromRole="ContactInformation" ToRole="State" />
+    <NavigationProperty Name="UserRegistration" Relationship="Self.FK_ContactInformation_UserRegistration" FromRole="ContactInformation" ToRole="UserRegistration" />
+  </EntityType>
+  <EntityType Name="Designation">
+    <Key>
+      <PropertyRef Name="Designation_Id" />
+    </Key>
+    <Property Name="Designation_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Designation_Qualification" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Designation_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Designation_KeySkillDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Designation_Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="JobOpenings" Relationship="Self.FK_JobOpenings_Designation" FromRole="Designation" ToRole="JobOpenings" />
+  </EntityType>
+  <EntityType Name="EducationCategory">
+    <Key>
+      <PropertyRef Name="Education_CategoryId" />
+    </Key>
+    <Property Name="Education_CategoryId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Education_CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Education_CategoryStatus" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="EducationSubTypes" Relationship="Self.FK_EducationSubType_EducationCategory" FromRole="EducationCategory" ToRole="EducationSubType" />
+    <NavigationProperty Name="EducationTypes" Relationship="Self.FK_EducationType_EducationCategory" FromRole="EducationCategory" ToRole="EducationType" />
+    <NavigationProperty Name="Qualifications" Relationship="Self.FK_Qualification_EducationCategory" FromRole="EducationCategory" ToRole="Qualification" />
+  </EntityType>
+  <EntityType Name="EducationSubType">
+    <Key>
+      <PropertyRef Name="EducationSubType_Id" />
+    </Key>
+    <Property Name="EducationSubType_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EducationSubType_EducationCategoryId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="EducationSubType_EducationTypeId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="EducationSubType_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EducationSubType_Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="EducationCategory" Relationship="Self.FK_EducationSubType_EducationCategory" FromRole="EducationSubType" ToRole="EducationCategory" />
+    <NavigationProperty Name="EducationType" Relationship="Self.FK_EducationSubType_EducationType" FromRole="EducationSubType" ToRole="EducationType" />
+    <NavigationProperty Name="Qualifications" Relationship="Self.FK_Qualification_EducationSubType" FromRole="EducationSubType" ToRole="Qualification" />
+  </EntityType>
+  <EntityType Name="EducationType">
+    <Key>
+      <PropertyRef Name="EducationType_Id" />
+    </Key>
+    <Property Name="EducationType_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EducationType_EducationCategoryId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="EducationType_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EducationType_Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="EducationCategory" Relationship="Self.FK_EducationType_EducationCategory" FromRole="EducationType" ToRole="EducationCategory" />
+    <NavigationProperty Name="EducationSubTypes" Relationship="Self.FK_EducationSubType_EducationType" FromRole="EducationType" ToRole="EducationSubType" />
+    <NavigationProperty Name="Qualifications" Relationship="Self.FK_Qualification_EducationType" FromRole="EducationType" ToRole="Qualification" />
+  </EntityType>
+  <EntityType Name="FeedBack">
+    <Key>
+      <PropertyRef Name="FeedBack_Id" />
+    </Key>
+    <Property Name="FeedBack_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FeedBack_Emaill" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Feedback_Message" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FinalDisqualification">
+    <Key>
+      <PropertyRef Name="FinalDisqualification_Id" />
+    </Key>
+    <Property Name="FinalDisqualification_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FinalDisqualification_JobAppliedId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FinalDisqualification_RoundId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FinalDisqualification_Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="InterViewRound" Relationship="Self.FK_FinalDisqualification_InterViewRounds" FromRole="FinalDisqualification" ToRole="InterViewRounds" />
+    <NavigationProperty Name="JobApplied" Relationship="Self.FK_FinalDisqualification_JobApplied" FromRole="FinalDisqualification" ToRole="JobApplied" />
+  </EntityType>
+  <EntityType Name="FinalSelection">
+    <Key>
+      <PropertyRef Name="FinalSelection_Id" />
+    </Key>
+    <Property Name="FinalSelection_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FinalSelection_JobAppliedId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FinalSelection_RoundId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FinalSelection_SalaryOffered" Type="Int32" Nullable="false" />
+    <Property Name="FinalSelection_JoiningDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FinalSelection_ProbationPeriod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="InterViewRound" Relationship="Self.FK_FinalSelection_InterViewRounds" FromRole="FinalSelection" ToRole="InterViewRounds" />
+    <NavigationProperty Name="JobApplied" Relationship="Self.FK_FinalSelection_JobApplied" FromRole="FinalSelection" ToRole="JobApplied" />
+  </EntityType>
+  <EntityType Name="InterViewRound">
+    <Key>
+      <PropertyRef Name="InterviewRounds_Id" />
+    </Key>
+    <Property Name="InterviewRounds_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Round_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Round_Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="FinalDisqualifications" Relationship="Self.FK_FinalDisqualification_InterViewRounds" FromRole="InterViewRounds" ToRole="FinalDisqualification" />
+    <NavigationProperty Name="FinalSelections" Relationship="Self.FK_FinalSelection_InterViewRounds" FromRole="InterViewRounds" ToRole="FinalSelection" />
+  </EntityType>
+  <EntityType Name="JobApplied">
+    <Key>
+      <PropertyRef Name="JobApplied_Id" />
+    </Key>
+    <Property Name="JobApplied_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobApplied_JobOpenings_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobApplied_RegisterationId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobApplied_ApplyDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="JobApplied_Status" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="FinalDisqualifications" Relationship="Self.FK_FinalDisqualification_JobApplied" FromRole="JobApplied" ToRole="FinalDisqualification" />
+    <NavigationProperty Name="FinalSelections" Relationship="Self.FK_FinalSelection_JobApplied" FromRole="JobApplied" ToRole="FinalSelection" />
+    <NavigationProperty Name="JobOpening" Relationship="Self.FK_JobApplied_JobOpenings" FromRole="JobApplied" ToRole="JobOpenings" />
+    <NavigationProperty Name="UserRegistration" Relationship="Self.FK_JobApplied_UserRegistration" FromRole="JobApplied" ToRole="UserRegistration" />
+  </EntityType>
+  <EntityType Name="JobOpening">
+    <Key>
+      <PropertyRef Name="JobOpenings_Id" />
+    </Key>
+    <Property Name="JobOpenings_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobOpenings_DesignationId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobOpenings_JobType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="JobOpenings_Vaccancies" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="JobOpenings_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="JobOpenings_WorkExperience" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="JobOpenings_PostDateTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="JobOpenings_Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="JobOpening_InterviewVenue" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="JobOpenings_InterviewDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="JobOpenings_Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Designation" Relationship="Self.FK_JobOpenings_Designation" FromRole="JobOpenings" ToRole="Designation" />
+    <NavigationProperty Name="JobApplieds" Relationship="Self.FK_JobApplied_JobOpenings" FromRole="JobOpenings" ToRole="JobApplied" />
+  </EntityType>
+  <EntityType Name="Qualification">
+    <Key>
+      <PropertyRef Name="Qualification_Id" />
+    </Key>
+    <Property Name="Qualification_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Qualification_RegistrationId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Qualification_EducationCategoryId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Qualification_EducationTypeId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Qualification_EducationSubTypeId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Qualification_BoardUniversity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Qualification_PassingYear" Type="Int32" Nullable="false" />
+    <Property Name="Qualification_Percentage" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EducationCategory" Relationship="Self.FK_Qualification_EducationCategory" FromRole="Qualification" ToRole="EducationCategory" />
+    <NavigationProperty Name="EducationSubType" Relationship="Self.FK_Qualification_EducationSubType" FromRole="Qualification" ToRole="EducationSubType" />
+    <NavigationProperty Name="EducationType" Relationship="Self.FK_Qualification_EducationType" FromRole="Qualification" ToRole="EducationType" />
+    <NavigationProperty Name="UserRegistration" Relationship="Self.FK_Qualification_UserRegistration" FromRole="Qualification" ToRole="UserRegistration" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="State_Id" />
+    </Key>
+    <Property Name="State_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="State_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="State_Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cities" Relationship="Self.FK_City_State" FromRole="State" ToRole="City" />
+    <NavigationProperty Name="ContactInformations" Relationship="Self.FK_ContactInformation_State" FromRole="State" ToRole="ContactInformation" />
+  </EntityType>
+  <EntityType Name="UserRegistration">
+    <Key>
+      <PropertyRef Name="UserRegisteration_RegisterationId" />
+    </Key>
+    <Property Name="UserRegisteration_RegisterationId" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserRegistration_UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserRegistration_Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserRegistration_Status" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ContactInformations" Relationship="Self.FK_ContactInformation_UserRegistration" FromRole="UserRegistration" ToRole="ContactInformation" />
+    <NavigationProperty Name="JobApplieds" Relationship="Self.FK_JobApplied_UserRegistration" FromRole="UserRegistration" ToRole="JobApplied" />
+    <NavigationProperty Name="Qualifications" Relationship="Self.FK_Qualification_UserRegistration" FromRole="UserRegistration" ToRole="Qualification" />
+    <NavigationProperty Name="WorkExperiences" Relationship="Self.FK_WorkExperience_UserRegistration" FromRole="UserRegistration" ToRole="WorkExperience" />
+    <NavigationProperty Name="PersonalInformations" Relationship="RecruitmentZoneModel.FK_PersonalInformation_UserRegistration" FromRole="UserRegistration" ToRole="PersonalInformation" />
+  </EntityType>
+  <EntityType Name="WorkExperience">
+    <Key>
+      <PropertyRef Name="WorkExperience_Id" />
+    </Key>
+    <Property Name="WorkExperience_Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkExperience_RegisterationId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="WorkExperience_CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WorkExperience_Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WorkExperience_FromDate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WorkExperience_ToDate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WorkExperience_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="UserRegistration" Relationship="Self.FK_WorkExperience_UserRegistration" FromRole="WorkExperience" ToRole="UserRegistration" />
+  </EntityType>
+  <Association Name="FK_AdminLogin_AdminType">
+    <End Role="AdminType" Type="Self.AdminType" Multiplicity="1" />
+    <End Role="AdminLogin" Type="Self.AdminLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminType">
+        <PropertyRef Name="AdminType_Id" />
+      </Principal>
+      <Dependent Role="AdminLogin">
+        <PropertyRef Name="Admin_AdminTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_State">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="State_Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="City_StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactInformation_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="ContactInformation" Type="Self.ContactInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="City_Id" />
+      </Principal>
+      <Dependent Role="ContactInformation">
+        <PropertyRef Name="ContactInformation_CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactInformation_State">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="ContactInformation" Type="Self.ContactInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="State_Id" />
+      </Principal>
+      <Dependent Role="ContactInformation">
+        <PropertyRef Name="ContactInformation_StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactInformation_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="ContactInformation" Type="Self.ContactInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="ContactInformation">
+        <PropertyRef Name="ContactInformation_RegistrationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobOpenings_Designation">
+    <End Role="Designation" Type="Self.Designation" Multiplicity="1" />
+    <End Role="JobOpenings" Type="Self.JobOpening" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="Designation_Id" />
+      </Principal>
+      <Dependent Role="JobOpenings">
+        <PropertyRef Name="JobOpenings_DesignationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EducationSubType_EducationCategory">
+    <End Role="EducationCategory" Type="Self.EducationCategory" Multiplicity="1" />
+    <End Role="EducationSubType" Type="Self.EducationSubType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationCategory">
+        <PropertyRef Name="Education_CategoryId" />
+      </Principal>
+      <Dependent Role="EducationSubType">
+        <PropertyRef Name="EducationSubType_EducationCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EducationType_EducationCategory">
+    <End Role="EducationCategory" Type="Self.EducationCategory" Multiplicity="1" />
+    <End Role="EducationType" Type="Self.EducationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationCategory">
+        <PropertyRef Name="Education_CategoryId" />
+      </Principal>
+      <Dependent Role="EducationType">
+        <PropertyRef Name="EducationType_EducationCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Qualification_EducationCategory">
+    <End Role="EducationCategory" Type="Self.EducationCategory" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationCategory">
+        <PropertyRef Name="Education_CategoryId" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="Qualification_EducationCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EducationSubType_EducationType">
+    <End Role="EducationType" Type="Self.EducationType" Multiplicity="1" />
+    <End Role="EducationSubType" Type="Self.EducationSubType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationType">
+        <PropertyRef Name="EducationType_Id" />
+      </Principal>
+      <Dependent Role="EducationSubType">
+        <PropertyRef Name="EducationSubType_EducationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Qualification_EducationSubType">
+    <End Role="EducationSubType" Type="Self.EducationSubType" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationSubType">
+        <PropertyRef Name="EducationSubType_Id" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="Qualification_EducationSubTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Qualification_EducationType">
+    <End Role="EducationType" Type="Self.EducationType" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationType">
+        <PropertyRef Name="EducationType_Id" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="Qualification_EducationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinalDisqualification_InterViewRounds">
+    <End Role="InterViewRounds" Type="Self.InterViewRound" Multiplicity="1" />
+    <End Role="FinalDisqualification" Type="Self.FinalDisqualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InterViewRounds">
+        <PropertyRef Name="InterviewRounds_Id" />
+      </Principal>
+      <Dependent Role="FinalDisqualification">
+        <PropertyRef Name="FinalDisqualification_RoundId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinalDisqualification_JobApplied">
+    <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="1" />
+    <End Role="FinalDisqualification" Type="Self.FinalDisqualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobApplied">
+        <PropertyRef Name="JobApplied_Id" />
+      </Principal>
+      <Dependent Role="FinalDisqualification">
+        <PropertyRef Name="FinalDisqualification_JobAppliedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinalSelection_InterViewRounds">
+    <End Role="InterViewRounds" Type="Self.InterViewRound" Multiplicity="1" />
+    <End Role="FinalSelection" Type="Self.FinalSelection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InterViewRounds">
+        <PropertyRef Name="InterviewRounds_Id" />
+      </Principal>
+      <Dependent Role="FinalSelection">
+        <PropertyRef Name="FinalSelection_RoundId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FinalSelection_JobApplied">
+    <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="1" />
+    <End Role="FinalSelection" Type="Self.FinalSelection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobApplied">
+        <PropertyRef Name="JobApplied_Id" />
+      </Principal>
+      <Dependent Role="FinalSelection">
+        <PropertyRef Name="FinalSelection_JobAppliedId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobApplied_JobOpenings">
+    <End Role="JobOpenings" Type="Self.JobOpening" Multiplicity="1" />
+    <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobOpenings">
+        <PropertyRef Name="JobOpenings_Id" />
+      </Principal>
+      <Dependent Role="JobApplied">
+        <PropertyRef Name="JobApplied_JobOpenings_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobApplied_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="JobApplied">
+        <PropertyRef Name="JobApplied_RegisterationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Qualification_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="Qualification_RegistrationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkExperience_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="WorkExperience" Type="Self.WorkExperience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="WorkExperience">
+        <PropertyRef Name="WorkExperience_RegisterationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RecruitmentZoneEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AdminLogins" EntityType="Self.AdminLogin" />
+    <EntitySet Name="AdminTypes" EntityType="Self.AdminType" />
+    <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="ContactInformations" EntityType="Self.ContactInformation" />
+    <EntitySet Name="Designations" EntityType="Self.Designation" />
+    <EntitySet Name="EducationCategories" EntityType="Self.EducationCategory" />
+    <EntitySet Name="EducationSubTypes" EntityType="Self.EducationSubType" />
+    <EntitySet Name="EducationTypes" EntityType="Self.EducationType" />
+    <EntitySet Name="FeedBacks" EntityType="Self.FeedBack" />
+    <EntitySet Name="FinalDisqualifications" EntityType="Self.FinalDisqualification" />
+    <EntitySet Name="FinalSelections" EntityType="Self.FinalSelection" />
+    <EntitySet Name="InterViewRounds" EntityType="Self.InterViewRound" />
+    <EntitySet Name="JobApplieds" EntityType="Self.JobApplied" />
+    <EntitySet Name="JobOpenings" EntityType="Self.JobOpening" />
+    <EntitySet Name="Qualifications" EntityType="Self.Qualification" />
+    <EntitySet Name="States" EntityType="Self.State" />
+    <EntitySet Name="UserRegistrations" EntityType="Self.UserRegistration" />
+    <EntitySet Name="WorkExperiences" EntityType="Self.WorkExperience" />
+    <AssociationSet Name="FK_AdminLogin_AdminType" Association="Self.FK_AdminLogin_AdminType">
+      <End Role="AdminType" EntitySet="AdminTypes" />
+      <End Role="AdminLogin" EntitySet="AdminLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactInformation_City" Association="Self.FK_ContactInformation_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="ContactInformation" EntitySet="ContactInformations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactInformation_State" Association="Self.FK_ContactInformation_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="ContactInformation" EntitySet="ContactInformations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactInformation_UserRegistration" Association="Self.FK_ContactInformation_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="ContactInformation" EntitySet="ContactInformations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobOpenings_Designation" Association="Self.FK_JobOpenings_Designation">
+      <End Role="Designation" EntitySet="Designations" />
+      <End Role="JobOpenings" EntitySet="JobOpenings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EducationSubType_EducationCategory" Association="Self.FK_EducationSubType_EducationCategory">
+      <End Role="EducationCategory" EntitySet="EducationCategories" />
+      <End Role="EducationSubType" EntitySet="EducationSubTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EducationType_EducationCategory" Association="Self.FK_EducationType_EducationCategory">
+      <End Role="EducationCategory" EntitySet="EducationCategories" />
+      <End Role="EducationType" EntitySet="EducationTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Qualification_EducationCategory" Association="Self.FK_Qualification_EducationCategory">
+      <End Role="EducationCategory" EntitySet="EducationCategories" />
+      <End Role="Qualification" EntitySet="Qualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EducationSubType_EducationType" Association="Self.FK_EducationSubType_EducationType">
+      <End Role="EducationType" EntitySet="EducationTypes" />
+      <End Role="EducationSubType" EntitySet="EducationSubTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Qualification_EducationSubType" Association="Self.FK_Qualification_EducationSubType">
+      <End Role="EducationSubType" EntitySet="EducationSubTypes" />
+      <End Role="Qualification" EntitySet="Qualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Qualification_EducationType" Association="Self.FK_Qualification_EducationType">
+      <End Role="EducationType" EntitySet="EducationTypes" />
+      <End Role="Qualification" EntitySet="Qualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinalDisqualification_InterViewRounds" Association="Self.FK_FinalDisqualification_InterViewRounds">
+      <End Role="InterViewRounds" EntitySet="InterViewRounds" />
+      <End Role="FinalDisqualification" EntitySet="FinalDisqualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinalDisqualification_JobApplied" Association="Self.FK_FinalDisqualification_JobApplied">
+      <End Role="JobApplied" EntitySet="JobApplieds" />
+      <End Role="FinalDisqualification" EntitySet="FinalDisqualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinalSelection_InterViewRounds" Association="Self.FK_FinalSelection_InterViewRounds">
+      <End Role="InterViewRounds" EntitySet="InterViewRounds" />
+      <End Role="FinalSelection" EntitySet="FinalSelections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FinalSelection_JobApplied" Association="Self.FK_FinalSelection_JobApplied">
+      <End Role="JobApplied" EntitySet="JobApplieds" />
+      <End Role="FinalSelection" EntitySet="FinalSelections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobApplied_JobOpenings" Association="Self.FK_JobApplied_JobOpenings">
+      <End Role="JobOpenings" EntitySet="JobOpenings" />
+      <End Role="JobApplied" EntitySet="JobApplieds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobApplied_UserRegistration" Association="Self.FK_JobApplied_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="JobApplied" EntitySet="JobApplieds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Qualification_UserRegistration" Association="Self.FK_Qualification_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="Qualification" EntitySet="Qualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkExperience_UserRegistration" Association="Self.FK_WorkExperience_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="WorkExperience" EntitySet="WorkExperiences" />
+    </AssociationSet>
+    <EntitySet Name="PersonalInformations" EntityType="RecruitmentZoneModel.PersonalInformation" />
+    <AssociationSet Name="FK_PersonalInformation_UserRegistration" Association="RecruitmentZoneModel.FK_PersonalInformation_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="PersonalInformation" EntitySet="PersonalInformations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="PersonalInformation">
+    <Key>
+      <PropertyRef Name="PersonalInformation_Id" />
+    </Key>
+    <Property Name="PersonalInformation_Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonalInformation_RegistrationId" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="PersonalInformation_FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PersonalInformation_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PersonalInformation_DateOfBirth" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PersonalInformation_Gender" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="PersonalInformation_MaritialStatus" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserRegistration" Relationship="RecruitmentZoneModel.FK_PersonalInformation_UserRegistration" FromRole="PersonalInformation" ToRole="UserRegistration" />
+  </EntityType>
+  <Association Name="FK_PersonalInformation_UserRegistration">
+    <End Type="RecruitmentZoneModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+    <End Type="RecruitmentZoneModel.PersonalInformation" Role="PersonalInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="PersonalInformation">
+        <PropertyRef Name="PersonalInformation_RegistrationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

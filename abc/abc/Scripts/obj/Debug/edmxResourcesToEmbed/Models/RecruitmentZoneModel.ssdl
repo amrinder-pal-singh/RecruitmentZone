@@ -1,0 +1,620 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RecruitmentZoneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdminLogin">
+    <Key>
+      <PropertyRef Name="Admin_Id" />
+    </Key>
+    <Property Name="Admin_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Admin_AdminTypeId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Admin_UserName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Admin_Password" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Admin_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AdminType">
+    <Key>
+      <PropertyRef Name="AdminType_Id" />
+    </Key>
+    <Property Name="AdminType_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdminType_Name" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="City_Id" />
+    </Key>
+    <Property Name="City_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="City_StateId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="City_Name" Type="varchar" MaxLength="35" Nullable="false" />
+    <Property Name="City_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactInformation">
+    <Key>
+      <PropertyRef Name="ContactInformation_Id" />
+    </Key>
+    <Property Name="ContactInformation_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactInformation_RegistrationId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ContactInformation_StateId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ContactInformation_CityId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ContactInformation_Address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ContactInformation_MobileNo" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="ContactInformation_AlternateMobileNo" Type="varchar" MaxLength="15" />
+    <Property Name="ContactInformation_EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CreateQuestions">
+    <Key>
+      <PropertyRef Name="CreateQuestion_Id" />
+    </Key>
+    <Property Name="CreateQuestion_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateQuestion_CreateTestId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="CreateQuestion_QuestionDescription" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreateQuestion_Option1" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreateQuestion_Option2" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreateQuestion_Option3" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreateQuestion_Option4" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreateQuestion_CorrectOption" Type="int" Nullable="false" />
+    <Property Name="CreateQuestion_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CreateTest">
+    <Key>
+      <PropertyRef Name="CreateTest_Id" />
+    </Key>
+    <Property Name="CreateTest_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateTest_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateTest_DesignationId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="CreateTest_NumberOfQuestions" Type="int" Nullable="false" />
+    <Property Name="CreateTest_Duration" Type="int" Nullable="false" />
+    <Property Name="CreateTest_TestDate" Type="date" Nullable="false" />
+    <Property Name="CreateTest_RequiredCorrectQuestions" Type="int" Nullable="false" />
+    <Property Name="CreateTest_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Designation">
+    <Key>
+      <PropertyRef Name="Designation_Id" />
+    </Key>
+    <Property Name="Designation_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Designation_Qualification" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Designation_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Designation_KeySkillDescription" Type="varchar" MaxLength="100" />
+    <Property Name="Designation_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DynamicTest">
+    <Key>
+      <PropertyRef Name="DynamicTest_Id" />
+    </Key>
+    <Property Name="DynamicTest_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DynamicTest_UserTestId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="DynamicTest_CreateQuestionId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="DynamicTest_CorrectOption" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EducationCategory">
+    <Key>
+      <PropertyRef Name="Education_CategoryId" />
+    </Key>
+    <Property Name="Education_CategoryId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Education_CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Education_CategoryStatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EducationSubType">
+    <Key>
+      <PropertyRef Name="EducationSubType_Id" />
+    </Key>
+    <Property Name="EducationSubType_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EducationSubType_EducationCategoryId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="EducationSubType_EducationTypeId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="EducationSubType_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EducationSubType_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EducationType">
+    <Key>
+      <PropertyRef Name="EducationType_Id" />
+    </Key>
+    <Property Name="EducationType_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EducationType_EducationCategoryId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="EducationType_Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="EducationType_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobApplied">
+    <Key>
+      <PropertyRef Name="JobApplied_Id" />
+    </Key>
+    <Property Name="JobApplied_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobApplied_JobOpenings_Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobApplied_RegisterationId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobApplied_ApplyDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobOpenings">
+    <Key>
+      <PropertyRef Name="JobOpenings_Id" />
+    </Key>
+    <Property Name="JobOpenings_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobOpenings_DesignationId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="JobOpenings_JobType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="JobOpenings_Location" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="JobOpenings_WorkExperience" Type="varchar" MaxLength="100" />
+    <Property Name="JobOpenings_PostDateTime" Type="date" Nullable="false" />
+    <Property Name="JobOpenings_Description" Type="varchar" MaxLength="200" />
+    <Property Name="JobOpenings_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonalInformation">
+    <Key>
+      <PropertyRef Name="PersonalInformation_Id" />
+    </Key>
+    <Property Name="PersonalInformation_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRegistration_RegistrationId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="PersonalInformation_FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PersonalInformation_LastName" Type="varchar" MaxLength="50" />
+    <Property Name="PersonalInformation_DateOfBirth" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PersonalInformation_Gender" Type="bit" Nullable="false" />
+    <Property Name="PersonalInformation_MaritialStatus" Type="bit" Nullable="false" />
+    <Property Name="PersonalInformation_UserImage" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Qualification">
+    <Key>
+      <PropertyRef Name="Qualification_Id" />
+    </Key>
+    <Property Name="Qualification_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Qualification_RegistrationId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Qualification_EducationCategoryId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Qualification_EducationTypeId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Qualification_EducationSubTypeId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Qualification_BoardUniversity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Qualification_PassingYear" Type="int" Nullable="false" />
+    <Property Name="Qualification_Percentage" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="State_Id" />
+    </Key>
+    <Property Name="State_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="State_Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRegistration">
+    <Key>
+      <PropertyRef Name="UserRegisteration_RegisterationId" />
+    </Key>
+    <Property Name="UserRegisteration_RegisterationId" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRegistration_UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserRegistration_Password" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="UserRegistration_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSkills">
+    <Key>
+      <PropertyRef Name="UserSkills_Id" />
+    </Key>
+    <Property Name="UserSkills_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserSkills_RegistrationId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="UserSkills_Description" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserSkills_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTest">
+    <Key>
+      <PropertyRef Name="UserTest_Id" />
+    </Key>
+    <Property Name="UserTest_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserTest_RegistrationId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="UserTest_CreateTestId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="UserTest_CorrectQuestions" Type="int" />
+    <Property Name="UserTest_InCorrectQuestions" Type="int" />
+    <Property Name="UserTest_AttemptedQuestions" Type="int" />
+    <Property Name="UserTest_Result" Type="varchar" MaxLength="15" />
+    <Property Name="UserTest_Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkExperience">
+    <Key>
+      <PropertyRef Name="WorkExperience_Id" />
+    </Key>
+    <Property Name="WorkExperience_Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkExperience_RegisterationId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="WorkExperience_CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="WorkExperience_Designation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="WorkExperience_FromDate" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="WorkExperience_ToDate" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="WorkExperience_Address" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AdminLogin_AdminType">
+    <End Role="AdminType" Type="Self.AdminType" Multiplicity="1" />
+    <End Role="AdminLogin" Type="Self.AdminLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminType">
+        <PropertyRef Name="AdminType_Id" />
+      </Principal>
+      <Dependent Role="AdminLogin">
+        <PropertyRef Name="Admin_AdminTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_State">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="State_Id" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="City_StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactInformation_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="ContactInformation" Type="Self.ContactInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="City_Id" />
+      </Principal>
+      <Dependent Role="ContactInformation">
+        <PropertyRef Name="ContactInformation_CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactInformation_State">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="ContactInformation" Type="Self.ContactInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="State_Id" />
+      </Principal>
+      <Dependent Role="ContactInformation">
+        <PropertyRef Name="ContactInformation_StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactInformation_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="ContactInformation" Type="Self.ContactInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="ContactInformation">
+        <PropertyRef Name="ContactInformation_RegistrationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CreateQuestions_CreateTest">
+    <End Role="CreateTest" Type="Self.CreateTest" Multiplicity="1" />
+    <End Role="CreateQuestions" Type="Self.CreateQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CreateTest">
+        <PropertyRef Name="CreateTest_Id" />
+      </Principal>
+      <Dependent Role="CreateQuestions">
+        <PropertyRef Name="CreateQuestion_CreateTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CreateTest_Designation">
+    <End Role="Designation" Type="Self.Designation" Multiplicity="1" />
+    <End Role="CreateTest" Type="Self.CreateTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="Designation_Id" />
+      </Principal>
+      <Dependent Role="CreateTest">
+        <PropertyRef Name="CreateTest_DesignationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DynamicTest_CreateQuestions">
+    <End Role="CreateQuestions" Type="Self.CreateQuestions" Multiplicity="1" />
+    <End Role="DynamicTest" Type="Self.DynamicTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CreateQuestions">
+        <PropertyRef Name="CreateQuestion_Id" />
+      </Principal>
+      <Dependent Role="DynamicTest">
+        <PropertyRef Name="DynamicTest_CreateQuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DynamicTest_UserTest">
+    <End Role="UserTest" Type="Self.UserTest" Multiplicity="1" />
+    <End Role="DynamicTest" Type="Self.DynamicTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTest">
+        <PropertyRef Name="UserTest_Id" />
+      </Principal>
+      <Dependent Role="DynamicTest">
+        <PropertyRef Name="DynamicTest_UserTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EducationSubType_EducationCategory">
+    <End Role="EducationCategory" Type="Self.EducationCategory" Multiplicity="1" />
+    <End Role="EducationSubType" Type="Self.EducationSubType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationCategory">
+        <PropertyRef Name="Education_CategoryId" />
+      </Principal>
+      <Dependent Role="EducationSubType">
+        <PropertyRef Name="EducationSubType_EducationCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EducationSubType_EducationType">
+    <End Role="EducationType" Type="Self.EducationType" Multiplicity="1" />
+    <End Role="EducationSubType" Type="Self.EducationSubType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationType">
+        <PropertyRef Name="EducationType_Id" />
+      </Principal>
+      <Dependent Role="EducationSubType">
+        <PropertyRef Name="EducationSubType_EducationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EducationType_EducationCategory">
+    <End Role="EducationCategory" Type="Self.EducationCategory" Multiplicity="1" />
+    <End Role="EducationType" Type="Self.EducationType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationCategory">
+        <PropertyRef Name="Education_CategoryId" />
+      </Principal>
+      <Dependent Role="EducationType">
+        <PropertyRef Name="EducationType_EducationCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobApplied_JobOpenings">
+    <End Role="JobOpenings" Type="Self.JobOpenings" Multiplicity="1" />
+    <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobOpenings">
+        <PropertyRef Name="JobOpenings_Id" />
+      </Principal>
+      <Dependent Role="JobApplied">
+        <PropertyRef Name="JobApplied_JobOpenings_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobApplied_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="JobApplied">
+        <PropertyRef Name="JobApplied_RegisterationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobOpenings_Designation">
+    <End Role="Designation" Type="Self.Designation" Multiplicity="1" />
+    <End Role="JobOpenings" Type="Self.JobOpenings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="Designation_Id" />
+      </Principal>
+      <Dependent Role="JobOpenings">
+        <PropertyRef Name="JobOpenings_DesignationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonalInformation_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="PersonalInformation" Type="Self.PersonalInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="PersonalInformation">
+        <PropertyRef Name="UserRegistration_RegistrationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Qualification_EducationCategory">
+    <End Role="EducationCategory" Type="Self.EducationCategory" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationCategory">
+        <PropertyRef Name="Education_CategoryId" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="Qualification_EducationCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Qualification_EducationSubType">
+    <End Role="EducationSubType" Type="Self.EducationSubType" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationSubType">
+        <PropertyRef Name="EducationSubType_Id" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="Qualification_EducationSubTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Qualification_EducationType">
+    <End Role="EducationType" Type="Self.EducationType" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EducationType">
+        <PropertyRef Name="EducationType_Id" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="Qualification_EducationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Qualification_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="Qualification_RegistrationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSkills_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="UserSkills" Type="Self.UserSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="UserSkills">
+        <PropertyRef Name="UserSkills_RegistrationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTest_CreateTest">
+    <End Role="CreateTest" Type="Self.CreateTest" Multiplicity="1" />
+    <End Role="UserTest" Type="Self.UserTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CreateTest">
+        <PropertyRef Name="CreateTest_Id" />
+      </Principal>
+      <Dependent Role="UserTest">
+        <PropertyRef Name="UserTest_CreateTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTest_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="UserTest" Type="Self.UserTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="UserTest">
+        <PropertyRef Name="UserTest_RegistrationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkExperience_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="WorkExperience" Type="Self.WorkExperience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserRegisteration_RegisterationId" />
+      </Principal>
+      <Dependent Role="WorkExperience">
+        <PropertyRef Name="WorkExperience_RegisterationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RecruitmentZoneModelStoreContainer">
+    <EntitySet Name="AdminLogin" EntityType="Self.AdminLogin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdminType" EntityType="Self.AdminType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactInformation" EntityType="Self.ContactInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CreateQuestions" EntityType="Self.CreateQuestions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CreateTest" EntityType="Self.CreateTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DynamicTest" EntityType="Self.DynamicTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EducationCategory" EntityType="Self.EducationCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EducationSubType" EntityType="Self.EducationSubType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EducationType" EntityType="Self.EducationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobApplied" EntityType="Self.JobApplied" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobOpenings" EntityType="Self.JobOpenings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonalInformation" EntityType="Self.PersonalInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Qualification" EntityType="Self.Qualification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRegistration" EntityType="Self.UserRegistration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserSkills" EntityType="Self.UserSkills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTest" EntityType="Self.UserTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkExperience" EntityType="Self.WorkExperience" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AdminLogin_AdminType" Association="Self.FK_AdminLogin_AdminType">
+      <End Role="AdminType" EntitySet="AdminType" />
+      <End Role="AdminLogin" EntitySet="AdminLogin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactInformation_City" Association="Self.FK_ContactInformation_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="ContactInformation" EntitySet="ContactInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactInformation_State" Association="Self.FK_ContactInformation_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="ContactInformation" EntitySet="ContactInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactInformation_UserRegistration" Association="Self.FK_ContactInformation_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="ContactInformation" EntitySet="ContactInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CreateQuestions_CreateTest" Association="Self.FK_CreateQuestions_CreateTest">
+      <End Role="CreateTest" EntitySet="CreateTest" />
+      <End Role="CreateQuestions" EntitySet="CreateQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CreateTest_Designation" Association="Self.FK_CreateTest_Designation">
+      <End Role="Designation" EntitySet="Designation" />
+      <End Role="CreateTest" EntitySet="CreateTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DynamicTest_CreateQuestions" Association="Self.FK_DynamicTest_CreateQuestions">
+      <End Role="CreateQuestions" EntitySet="CreateQuestions" />
+      <End Role="DynamicTest" EntitySet="DynamicTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DynamicTest_UserTest" Association="Self.FK_DynamicTest_UserTest">
+      <End Role="UserTest" EntitySet="UserTest" />
+      <End Role="DynamicTest" EntitySet="DynamicTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EducationSubType_EducationCategory" Association="Self.FK_EducationSubType_EducationCategory">
+      <End Role="EducationCategory" EntitySet="EducationCategory" />
+      <End Role="EducationSubType" EntitySet="EducationSubType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EducationSubType_EducationType" Association="Self.FK_EducationSubType_EducationType">
+      <End Role="EducationType" EntitySet="EducationType" />
+      <End Role="EducationSubType" EntitySet="EducationSubType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EducationType_EducationCategory" Association="Self.FK_EducationType_EducationCategory">
+      <End Role="EducationCategory" EntitySet="EducationCategory" />
+      <End Role="EducationType" EntitySet="EducationType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobApplied_JobOpenings" Association="Self.FK_JobApplied_JobOpenings">
+      <End Role="JobOpenings" EntitySet="JobOpenings" />
+      <End Role="JobApplied" EntitySet="JobApplied" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobApplied_UserRegistration" Association="Self.FK_JobApplied_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="JobApplied" EntitySet="JobApplied" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobOpenings_Designation" Association="Self.FK_JobOpenings_Designation">
+      <End Role="Designation" EntitySet="Designation" />
+      <End Role="JobOpenings" EntitySet="JobOpenings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonalInformation_UserRegistration" Association="Self.FK_PersonalInformation_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="PersonalInformation" EntitySet="PersonalInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Qualification_EducationCategory" Association="Self.FK_Qualification_EducationCategory">
+      <End Role="EducationCategory" EntitySet="EducationCategory" />
+      <End Role="Qualification" EntitySet="Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Qualification_EducationSubType" Association="Self.FK_Qualification_EducationSubType">
+      <End Role="EducationSubType" EntitySet="EducationSubType" />
+      <End Role="Qualification" EntitySet="Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Qualification_EducationType" Association="Self.FK_Qualification_EducationType">
+      <End Role="EducationType" EntitySet="EducationType" />
+      <End Role="Qualification" EntitySet="Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Qualification_UserRegistration" Association="Self.FK_Qualification_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="Qualification" EntitySet="Qualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSkills_UserRegistration" Association="Self.FK_UserSkills_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="UserSkills" EntitySet="UserSkills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTest_CreateTest" Association="Self.FK_UserTest_CreateTest">
+      <End Role="CreateTest" EntitySet="CreateTest" />
+      <End Role="UserTest" EntitySet="UserTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTest_UserRegistration" Association="Self.FK_UserTest_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="UserTest" EntitySet="UserTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkExperience_UserRegistration" Association="Self.FK_WorkExperience_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="WorkExperience" EntitySet="WorkExperience" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

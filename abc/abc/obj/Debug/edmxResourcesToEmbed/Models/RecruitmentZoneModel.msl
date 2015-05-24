@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RecruitmentZoneModelStoreContainer" CdmEntityContainer="RecruitmentZoneEntities">
+    <EntitySetMapping Name="AdminLogins">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.AdminLogin">
+        <MappingFragment StoreEntitySet="AdminLogin">
+          <ScalarProperty Name="Admin_Id" ColumnName="Admin_Id" />
+          <ScalarProperty Name="Admin_AdminTypeId" ColumnName="Admin_AdminTypeId" />
+          <ScalarProperty Name="Admin_UserName" ColumnName="Admin_UserName" />
+          <ScalarProperty Name="Admin_Password" ColumnName="Admin_Password" />
+          <ScalarProperty Name="Admin_Status" ColumnName="Admin_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminTypes">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.AdminType">
+        <MappingFragment StoreEntitySet="AdminType">
+          <ScalarProperty Name="AdminType_Id" ColumnName="AdminType_Id" />
+          <ScalarProperty Name="AdminType_Name" ColumnName="AdminType_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="City_Id" ColumnName="City_Id" />
+          <ScalarProperty Name="City_StateId" ColumnName="City_StateId" />
+          <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+          <ScalarProperty Name="City_Status" ColumnName="City_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactInformations">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.ContactInformation">
+        <MappingFragment StoreEntitySet="ContactInformation">
+          <ScalarProperty Name="ContactInformation_Id" ColumnName="ContactInformation_Id" />
+          <ScalarProperty Name="ContactInformation_RegistrationId" ColumnName="ContactInformation_RegistrationId" />
+          <ScalarProperty Name="ContactInformation_StateId" ColumnName="ContactInformation_StateId" />
+          <ScalarProperty Name="ContactInformation_CityId" ColumnName="ContactInformation_CityId" />
+          <ScalarProperty Name="ContactInformation_Address" ColumnName="ContactInformation_Address" />
+          <ScalarProperty Name="ContactInformation_MobileNo" ColumnName="ContactInformation_MobileNo" />
+          <ScalarProperty Name="ContactInformation_AlternateMobileNo" ColumnName="ContactInformation_AlternateMobileNo" />
+          <ScalarProperty Name="ContactInformation_EmailId" ColumnName="ContactInformation_EmailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Designations">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.Designation">
+        <MappingFragment StoreEntitySet="Designation">
+          <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
+          <ScalarProperty Name="Designation_Qualification" ColumnName="Designation_Qualification" />
+          <ScalarProperty Name="Designation_Name" ColumnName="Designation_Name" />
+          <ScalarProperty Name="Designation_KeySkillDescription" ColumnName="Designation_KeySkillDescription" />
+          <ScalarProperty Name="Designation_Status" ColumnName="Designation_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EducationCategories">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.EducationCategory">
+        <MappingFragment StoreEntitySet="EducationCategory">
+          <ScalarProperty Name="Education_CategoryId" ColumnName="Education_CategoryId" />
+          <ScalarProperty Name="Education_CategoryName" ColumnName="Education_CategoryName" />
+          <ScalarProperty Name="Education_CategoryStatus" ColumnName="Education_CategoryStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EducationSubTypes">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.EducationSubType">
+        <MappingFragment StoreEntitySet="EducationSubType">
+          <ScalarProperty Name="EducationSubType_Id" ColumnName="EducationSubType_Id" />
+          <ScalarProperty Name="EducationSubType_EducationCategoryId" ColumnName="EducationSubType_EducationCategoryId" />
+          <ScalarProperty Name="EducationSubType_EducationTypeId" ColumnName="EducationSubType_EducationTypeId" />
+          <ScalarProperty Name="EducationSubType_Name" ColumnName="EducationSubType_Name" />
+          <ScalarProperty Name="EducationSubType_Status" ColumnName="EducationSubType_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EducationTypes">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.EducationType">
+        <MappingFragment StoreEntitySet="EducationType">
+          <ScalarProperty Name="EducationType_Id" ColumnName="EducationType_Id" />
+          <ScalarProperty Name="EducationType_EducationCategoryId" ColumnName="EducationType_EducationCategoryId" />
+          <ScalarProperty Name="EducationType_Name" ColumnName="EducationType_Name" />
+          <ScalarProperty Name="EducationType_Status" ColumnName="EducationType_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeedBacks">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.FeedBack">
+        <MappingFragment StoreEntitySet="FeedBack">
+          <ScalarProperty Name="FeedBack_Id" ColumnName="FeedBack_Id" />
+          <ScalarProperty Name="FeedBack_Emaill" ColumnName="FeedBack_Emaill" />
+          <ScalarProperty Name="Feedback_Message" ColumnName="Feedback_Message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinalDisqualifications">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.FinalDisqualification">
+        <MappingFragment StoreEntitySet="FinalDisqualification">
+          <ScalarProperty Name="FinalDisqualification_Id" ColumnName="FinalDisqualification_Id" />
+          <ScalarProperty Name="FinalDisqualification_JobAppliedId" ColumnName="FinalDisqualification_JobAppliedId" />
+          <ScalarProperty Name="FinalDisqualification_RoundId" ColumnName="FinalDisqualification_RoundId" />
+          <ScalarProperty Name="FinalDisqualification_Remarks" ColumnName="FinalDisqualification_Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinalSelections">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.FinalSelection">
+        <MappingFragment StoreEntitySet="FinalSelection">
+          <ScalarProperty Name="FinalSelection_Id" ColumnName="FinalSelection_Id" />
+          <ScalarProperty Name="FinalSelection_JobAppliedId" ColumnName="FinalSelection_JobAppliedId" />
+          <ScalarProperty Name="FinalSelection_RoundId" ColumnName="FinalSelection_RoundId" />
+          <ScalarProperty Name="FinalSelection_SalaryOffered" ColumnName="FinalSelection_SalaryOffered" />
+          <ScalarProperty Name="FinalSelection_JoiningDate" ColumnName="FinalSelection_JoiningDate" />
+          <ScalarProperty Name="FinalSelection_ProbationPeriod" ColumnName="FinalSelection_ProbationPeriod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InterViewRounds">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.InterViewRound">
+        <MappingFragment StoreEntitySet="InterViewRounds">
+          <ScalarProperty Name="InterviewRounds_Id" ColumnName="InterviewRounds_Id" />
+          <ScalarProperty Name="Round_Name" ColumnName="Round_Name" />
+          <ScalarProperty Name="Round_Status" ColumnName="Round_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobApplieds">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.JobApplied">
+        <MappingFragment StoreEntitySet="JobApplied">
+          <ScalarProperty Name="JobApplied_Id" ColumnName="JobApplied_Id" />
+          <ScalarProperty Name="JobApplied_JobOpenings_Id" ColumnName="JobApplied_JobOpenings_Id" />
+          <ScalarProperty Name="JobApplied_RegisterationId" ColumnName="JobApplied_RegisterationId" />
+          <ScalarProperty Name="JobApplied_ApplyDate" ColumnName="JobApplied_ApplyDate" />
+          <ScalarProperty Name="JobApplied_Status" ColumnName="JobApplied_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobOpenings">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.JobOpening">
+        <MappingFragment StoreEntitySet="JobOpenings">
+          <ScalarProperty Name="JobOpenings_Id" ColumnName="JobOpenings_Id" />
+          <ScalarProperty Name="JobOpenings_DesignationId" ColumnName="JobOpenings_DesignationId" />
+          <ScalarProperty Name="JobOpenings_JobType" ColumnName="JobOpenings_JobType" />
+          <ScalarProperty Name="JobOpenings_Vaccancies" ColumnName="JobOpenings_Vaccancies" />
+          <ScalarProperty Name="JobOpenings_Location" ColumnName="JobOpenings_Location" />
+          <ScalarProperty Name="JobOpenings_WorkExperience" ColumnName="JobOpenings_WorkExperience" />
+          <ScalarProperty Name="JobOpenings_PostDateTime" ColumnName="JobOpenings_PostDateTime" />
+          <ScalarProperty Name="JobOpenings_Title" ColumnName="JobOpenings_Title" />
+          <ScalarProperty Name="JobOpening_InterviewVenue" ColumnName="JobOpening_InterviewVenue" />
+          <ScalarProperty Name="JobOpenings_InterviewDate" ColumnName="JobOpenings_InterviewDate" />
+          <ScalarProperty Name="JobOpenings_Status" ColumnName="JobOpenings_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Qualifications">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.Qualification">
+        <MappingFragment StoreEntitySet="Qualification">
+          <ScalarProperty Name="Qualification_Id" ColumnName="Qualification_Id" />
+          <ScalarProperty Name="Qualification_RegistrationId" ColumnName="Qualification_RegistrationId" />
+          <ScalarProperty Name="Qualification_EducationCategoryId" ColumnName="Qualification_EducationCategoryId" />
+          <ScalarProperty Name="Qualification_EducationTypeId" ColumnName="Qualification_EducationTypeId" />
+          <ScalarProperty Name="Qualification_EducationSubTypeId" ColumnName="Qualification_EducationSubTypeId" />
+          <ScalarProperty Name="Qualification_BoardUniversity" ColumnName="Qualification_BoardUniversity" />
+          <ScalarProperty Name="Qualification_PassingYear" ColumnName="Qualification_PassingYear" />
+          <ScalarProperty Name="Qualification_Percentage" ColumnName="Qualification_Percentage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="State_Id" ColumnName="State_Id" />
+          <ScalarProperty Name="State_Name" ColumnName="State_Name" />
+          <ScalarProperty Name="State_Status" ColumnName="State_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRegistrations">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.UserRegistration">
+        <MappingFragment StoreEntitySet="UserRegistration">
+          <ScalarProperty Name="UserRegisteration_RegisterationId" ColumnName="UserRegisteration_RegisterationId" />
+          <ScalarProperty Name="UserRegistration_UserName" ColumnName="UserRegistration_UserName" />
+          <ScalarProperty Name="UserRegistration_Password" ColumnName="UserRegistration_Password" />
+          <ScalarProperty Name="UserRegistration_Status" ColumnName="UserRegistration_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkExperiences">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.WorkExperience">
+        <MappingFragment StoreEntitySet="WorkExperience">
+          <ScalarProperty Name="WorkExperience_Id" ColumnName="WorkExperience_Id" />
+          <ScalarProperty Name="WorkExperience_RegisterationId" ColumnName="WorkExperience_RegisterationId" />
+          <ScalarProperty Name="WorkExperience_CompanyName" ColumnName="WorkExperience_CompanyName" />
+          <ScalarProperty Name="WorkExperience_Designation" ColumnName="WorkExperience_Designation" />
+          <ScalarProperty Name="WorkExperience_FromDate" ColumnName="WorkExperience_FromDate" />
+          <ScalarProperty Name="WorkExperience_ToDate" ColumnName="WorkExperience_ToDate" />
+          <ScalarProperty Name="WorkExperience_Address" ColumnName="WorkExperience_Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonalInformations">
+      <EntityTypeMapping TypeName="RecruitmentZoneModel.PersonalInformation">
+        <MappingFragment StoreEntitySet="PersonalInformation">
+          <ScalarProperty Name="PersonalInformation_MaritialStatus" ColumnName="PersonalInformation_MaritialStatus" />
+          <ScalarProperty Name="PersonalInformation_Gender" ColumnName="PersonalInformation_Gender" />
+          <ScalarProperty Name="PersonalInformation_DateOfBirth" ColumnName="PersonalInformation_DateOfBirth" />
+          <ScalarProperty Name="PersonalInformation_LastName" ColumnName="PersonalInformation_LastName" />
+          <ScalarProperty Name="PersonalInformation_FirstName" ColumnName="PersonalInformation_FirstName" />
+          <ScalarProperty Name="PersonalInformation_RegistrationId" ColumnName="PersonalInformation_RegistrationId" />
+          <ScalarProperty Name="PersonalInformation_Id" ColumnName="PersonalInformation_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
